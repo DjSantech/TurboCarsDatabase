@@ -19,7 +19,7 @@ const App = () => {
                 <Route path="/registrar-venta" element={<RegistrarVenta />} />
                 <Route path="/registrar-cliente" element={<RegistrarCliente />} />
                 <Route path="/consulta-inventario" element={<ConsultaInventario />} />
-                <Route path="/modificacion-inventario" element={<ModificacionInventario/>} />
+                <Route path="/modificacion-inventario" element={<ModificacionInventario />} />
             </Routes>
         </Router>
     );
