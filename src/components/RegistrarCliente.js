@@ -1,36 +1,26 @@
-// src/components/RegistrarCliente.js
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import '../styles/RegistrarClientes.css'; // Asegúrate de tener un archivo CSS para los estilos
 
 const RegistrarCliente = () => {
-    const [nombre, setNombre] = useState('');
-    const [email, setEmail] = useState('');
-    const [telefono, setTelefono] = useState('');
-    const navigate = useNavigate();
+    const [cliente, setCliente] = useState({
+        id: '',
+        nombre: '',
+        apellido: '',
+        correo: '',
+        telefono: ''
+    });
 
-    const handleSubmit = async (e) => {
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setCliente({ ...cliente, [name]: value });
+    };
+
+    const handleSubmit = (e) => {
         e.preventDefault();
-
-        const cliente = { nombre, email, telefono };
-
-        try {
-            const response = await fetch('http://localhost/tu_api/registrar_cliente.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(cliente),
-            });
-
-            if (response.ok) {
-                // Si el registro es exitoso, redirigir a la interfaz de la base de datos
-                navigate('/basededatos');
-            } else {
-                console.error('Error al registrar el cliente');
-            }
-        } catch (error) {
-            console.error('Error:', error);
-        }
+        // Aquí puedes agregar la lógica para enviar los datos a tu servidor
+        console.log(cliente);
+        // Puedes hacer una solicitud POST para enviar la información
     };
 
     return (
@@ -38,36 +28,59 @@ const RegistrarCliente = () => {
             <h2>Registrar Cliente</h2>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="nombre">Nombre:</label>
+                    <label>ID Cliente:</label>
                     <input
                         type="text"
-                        id="nombre"
-                        value={nombre}
-                        onChange={(e) => setNombre(e.target.value)}
+                        name="id"
+                        value={cliente.id}
+                        onChange={handleChange}
                         required
                     />
                 </div>
                 <div>
-                    <label htmlFor="email">Email:</label>
+                    <label>Nombre:</label>
+                    <input
+                        type="text"
+                        name="nombre"
+                        value={cliente.nombre}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div>
+                    <label>Apellido:</label>
+                    <input
+                        type="text"
+                        name="apellido"
+                        value={cliente.apellido}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div>
+                    <label>Correo:</label>
                     <input
                         type="email"
-                        id="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        name="correo"
+                        value={cliente.correo}
+                        onChange={handleChange}
                         required
                     />
                 </div>
                 <div>
-                    <label htmlFor="telefono">Teléfono:</label>
+                    <label>Teléfono:</label>
                     <input
                         type="tel"
-                        id="telefono"
-                        value={telefono}
-                        onChange={(e) => setTelefono(e.target.value)}
+                        name="telefono"
+                        value={cliente.telefono}
+                        onChange={handleChange}
                         required
                     />
                 </div>
-                <button type="submit">Registrar</button>
+                <div className="botones-clientes">
+                <button type="submit">Registrar Cliente</button>
+                <Link to="/BaseDeDatos"><button >Volver al menu</button></Link>
+                </div>
             </form>
         </div>
     );

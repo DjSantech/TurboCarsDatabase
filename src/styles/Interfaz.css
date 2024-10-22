@@ -1,0 +1,39 @@
+/* src/styles/Interfaz.css */
+
+.menu {
+    background-color: #f0f4f8; /* Color de fondo claro */
+    border-radius: 8px; /* Esquinas redondeadas */
+    padding: 20px; /* Espaciado interno */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    max-width: 400px; /* Ancho máximo */
+    margin: 20px auto; /* Centrado en la página */
+    text-align: center; /* Centrar el texto */
+}
+
+.menu h2 {
+    color: #333; /* Color del texto del encabezado */
+    margin-bottom: 15px; /* Espaciado debajo del encabezado */
+}
+
+.menu ul {
+    list-style-type: none; /* Sin viñetas */
+    padding: 0; /* Sin espaciado interno */
+}
+
+.menu li {
+    margin: 20px 0; /* Espaciado entre los elementos de la lista */
+}
+
+.menu li a {
+    text-decoration: none; /* Sin subrayado */
+    color: #007bff; /* Color del enlace */
+    font-weight: bold; /* Negrita */
+    padding: 10px 15px; /* Espaciado alrededor del enlace */
+    border-radius: 5px; /* Esquinas redondeadas del enlace */
+    transition: background-color 0.3s; /* Transición suave */
+}
+
+.menu li a:hover {
+    background-color: #007bff; /* Color de fondo al pasar el mouse */
+    color: white; /* Color del texto al pasar el mouse */
+}
