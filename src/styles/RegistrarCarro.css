@@ -44,7 +44,7 @@ body {
     width: 90%;
 }
 
-.registrar-carro .botones {
+.registrar-carro .botones-carros {
     display: flex;
     margin-left: 5%;
     padding: 20px;
@@ -54,7 +54,7 @@ body {
     cursor: pointer;
 }
 
-.registrar-carro .botones input[type="submit"],button {
+.registrar-carro .botones-carros input[type="submit"],button {
     border-radius: 5px;
     background-color: #6600ff;
     padding: 10px 0px;

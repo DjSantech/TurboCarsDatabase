@@ -110,7 +110,7 @@ const RegistrarCarro = () => {
                     required
                 /><br /><br />
                 
-                <div className="botones">
+                <div className="botones-carros">
                 <Link to="/BaseDeDatos"><button>Volver al menu</button></Link>
                 <input type="submit" value="Registrar Carro" />
                 </div>

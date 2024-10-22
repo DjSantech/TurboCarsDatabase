@@ -1,0 +1,65 @@
+/* Estilo general del formulario */
+.registrar-venta {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+.registrar-venta form {
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 20px; /* Espaciado interno */
+    max-width: 600px; /* Ancho máximo del formulario */
+    margin: 20px auto; /* Centrar el formulario */
+    
+}
+
+/* Estilo de los encabezados */
+.registrar-venta h2 {
+    text-align: center; /* Centrar el texto */
+    color: #333; /* Color del texto */
+}
+
+/* Estilo de las etiquetas */
+.registrar-venta label {
+    display: block; /* Hacer que las etiquetas sean bloques */
+    margin-bottom: 5px; /* Espacio debajo de las etiquetas */
+    font-weight: bold; /* Texto en negrita */
+}
+
+/* Estilo de los inputs y selects */
+.registrar-venta input[type="date"],
+input[type="number"],
+select {
+    width: 100%; /* Ancho completo */
+    padding: 10px; /* Espaciado interno */
+    border: 1px solid #ccc; /* Borde gris claro */
+    border-radius: 5px; /* Bordes redondeados */
+    margin-bottom: 15px; /* Espacio debajo de los inputs */
+    font-size: 16px; /* Tamaño de fuente */
+}
+
+/* Estilo del botón de enviar */
+.botones-ventas  {
+    display: flex; /* Mostrar los botones en línea */
+    flex-direction: column;
+    margin: 1;
+    margin-top: 20px; /* Espacio arriba de los botones */
+}
+
+.registrar-venta .botones-ventas button {   
+    background-color: #007bff; /* Color azul */
+    color: white; /* Texto blanco */
+    border: none; /* Sin borde */
+    width: 100%; /* Ancho completo */
+    border-radius: 5px; /* Bordes redondeados */
+    margin: 5px;
+    cursor: pointer; /* Cursor de flecha */
+    
+}
+
+/* Efecto hover para el botón */
+.registrar-venta button:hover {
+    background-color: #007bff; /* Color verde más oscuro */
+}
