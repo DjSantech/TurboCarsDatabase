@@ -1,5 +1,10 @@
 /* Estilo general del formulario */
+body {
+    margin: 100px
+    ;
+}
 .registrar-carro {
+    margin-top: 200px;
     background-color: #f9f9f9; /* Color de fondo claro */
     border: 1px solid #ccc; /* Borde gris claro */
     border-radius: 5px; /* Bordes redondeados */
@@ -7,6 +12,7 @@
     max-width: 500px; /* Ancho máximo del formulario */
     margin: 20px auto; /* Centrar el formulario */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    max-height:700px ;
 }
 
 /* Estilo de los encabezados */

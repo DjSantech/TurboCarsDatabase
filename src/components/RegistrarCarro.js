@@ -9,6 +9,7 @@ const RegistrarCarro = () => {
         marca: '',
         año: '',
         color: '',
+        escala:'',
         precio: ''
     });
 
@@ -22,18 +23,17 @@ const RegistrarCarro = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        // Enviar los datos al servidor PHP
+    
         try {
             const response = await fetch('http://localhost/registrar_carro.php', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded', // Esto es necesario para PHP
+                    'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: new URLSearchParams(formData).toString() // Convertir los datos a un formato adecuado para PHP
+                body: new URLSearchParams(formData).toString()
             });
-
-            const result = await response.json();
+    
+            const result = await response.json(); // Cambié esto a JSON
             alert(result.message); // Mostrar el mensaje de éxito o error
         } catch (error) {
             console.error("Error en la solicitud:", error);
@@ -88,12 +88,12 @@ const RegistrarCarro = () => {
                     required
                 /><br /><br />
 
-                <label htmlFor="Escala">Escala:</label>
+                <label htmlFor="escala">Escala:</label>
                 <input
                     type="text"
-                    id="Escala"
-                    name="Escala"
-                    value={formData.color}
+                    id="escala"
+                    name="escala"
+                    value={formData.escala}
                     onChange={handleChange}
                     placeholder="Escala"
                     required
