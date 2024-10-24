@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/RegistrarClientes.css'; // Asegúrate de tener un archivo CSS para los estilos
+import '../styles/RegistrarClientes.css'; 
+
 
 const RegistrarCliente = () => {
-    const [cliente, setCliente] = useState({
-        id: '',
+    const [formData, setFormData] = useState({
+        ID_cliente:'',
         nombre: '',
         apellido: '',
         correo: '',
@@ -13,75 +14,92 @@ const RegistrarCliente = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setCliente({ ...cliente, [name]: value });
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Aquí puedes agregar la lógica para enviar los datos a tu servidor
-        console.log(cliente);
-        // Puedes hacer una solicitud POST para enviar la información
+
+        // Enviar los datos al servidor PHP
+        try {
+            const response = await fetch('http://localhost/registrar_cliente.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams(formData).toString()
+            });
+
+            const result = await response.json();
+            alert(result.message); // Mostrar el mensaje de éxito o error
+        } catch (error) {
+            console.error("Error en la solicitud:", error);
+        }
     };
 
     return (
         <div className="registrar-cliente">
-            <h2>Registrar Cliente</h2>
+            <h1>Registrar Nuevo Cliente</h1>
             <form onSubmit={handleSubmit}>
+                
                 <div>
-                    <label>ID Cliente:</label>
+                    <label htmlFor="ID_cliente">ID Cliente:</label>
                     <input
                         type="text"
-                        name="id"
-                        value={cliente.id}
+                        name="ID_cliente"
+                        value={formData.ID_cliente}
                         onChange={handleChange}
                         required
                     />
                 </div>
-                <div>
-                    <label>Nombre:</label>
-                    <input
-                        type="text"
-                        name="nombre"
-                        value={cliente.nombre}
-                        onChange={handleChange}
-                        required
-                    />
+                <label htmlFor="nombre">Nombre:</label>
+                <input
+                    type="text"
+                    id="nombre"
+                    name="nombre"
+                    value={formData.nombre}
+                    onChange={handleChange}
+                    required
+                /><br /><br />
+
+                <label htmlFor="apellido">Apellido:</label>
+                <input
+                    type="text"
+                    id="apellido"
+                    name="apellido"
+                    value={formData.apellido}
+                    onChange={handleChange}
+                    required
+                /><br /><br />
+
+                <label htmlFor="correo">Correo:</label>
+                <input
+                    type="email"
+                    id="correo"
+                    name="correo"
+                    value={formData.correo}
+                    onChange={handleChange}
+                    required
+                /><br /><br />
+
+                <label htmlFor="telefono">Teléfono:</label>
+                <input
+                    type="tel"
+                    id="telefono"
+                    name="telefono"
+                    value={formData.telefono}
+                    onChange={handleChange}
+                    required
+                /><br /><br />
+
+                <div className='botones-clientes'>
+                <input type="submit" value="Registrar Cliente" />
+                <Link to="/BaseDeDatos"><button>Volver al menú</button></Link>
                 </div>
-                <div>
-                    <label>Apellido:</label>
-                    <input
-                        type="text"
-                        name="apellido"
-                        value={cliente.apellido}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Correo:</label>
-                    <input
-                        type="email"
-                        name="correo"
-                        value={cliente.correo}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Teléfono:</label>
-                    <input
-                        type="tel"
-                        name="telefono"
-                        value={cliente.telefono}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div className="botones-clientes">
-                <button type="submit">Registrar Cliente</button>
-                <Link to="/BaseDeDatos"><button >Volver al menu</button></Link>
-                </div>
-            </form>
+                </form>
         </div>
     );
 };
