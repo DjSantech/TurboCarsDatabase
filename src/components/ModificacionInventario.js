@@ -1,39 +1,40 @@
-// src/components/ModificarInventario.js
 import React, { useState, useEffect } from 'react';
 
 const ModificarInventario = () => {
-    const [inventario, setInventario] = useState([]); // Lista de IDs de inventario
-    const [selectedCar, setSelectedCar] = useState(null); // Carro seleccionado
+    const [inventario, setInventario] = useState([]);
+    const [selectedCar, setSelectedCar] = useState(null);
     const [formData, setFormData] = useState({
-        id_inventario: '',
-        id_c_carro: '',
-        fecha_ingreso: ''
+        ID_carro: '',
+        Modelo: '',
+        Marca: '',
+        Anio: '',
+        Color: '',
+        Escala: '',
+        Precio: ''
     });
 
-    // Función para obtener el inventario desde la base de datos
     useEffect(() => {
         const fetchInventario = async () => {
             try {
-                const response = await fetch('http://localhost/obtener_inventario.php');
+                const response = await fetch('http://localhost/consulta_inventario.php');
                 const data = await response.json();
                 setInventario(data);
             } catch (error) {
                 console.error("Error al obtener el inventario:", error);
             }
         };
-
         fetchInventario();
     }, []);
 
-    // Manejar la selección del carro
     const handleSelectChange = (e) => {
         const id = e.target.value;
-        const car = inventario.find(item => item.id_inventario === id);
+        const car = inventario.find(item => item.ID_carro === parseInt(id)); 
         setSelectedCar(car);
-        setFormData(car); // Llenar los datos del carro seleccionado
+        if (car) {
+            setFormData(car); 
+        }
     };
 
-    // Manejar el cambio en el formulario
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
@@ -42,11 +43,10 @@ const ModificarInventario = () => {
         });
     };
 
-    // Manejar el envío del formulario
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost/modificar_inventario.php', {
+            const response = await fetch('http://localhost/editar_carro.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -55,9 +55,9 @@ const ModificarInventario = () => {
             });
 
             const result = await response.json();
-            alert(result.message); // Mostrar el mensaje de éxito o error
+            alert(result.message); 
         } catch (error) {
-            console.error("Error al modificar el inventario:", error);
+            console.error("Error al modificar el carro:", error);
         }
     };
 
@@ -65,36 +65,74 @@ const ModificarInventario = () => {
         <div className="modificar-inventario">
             <h1>Modificar Inventario</h1>
             
-            {/* Selector de carro */}
             <label htmlFor="carro-select">Seleccionar Carro:</label>
-            <select id="carro-select" onChange={handleSelectChange} value={selectedCar ? selectedCar.id_inventario : ''}>
+            <select id="carro-select" onChange={handleSelectChange}>
                 <option value="">-- Selecciona un Carro --</option>
-                {inventario.map(car => (
-                    <option key={car.id_inventario} value={car.id_inventario}>
-                        ID: {car.id_inventario} - Carro: {car.id_c_carro}
+                {inventario.map((car) => (
+                    <option key={car.ID_carro} value={car.ID_carro}>
+                        ID: {car.ID_carro} - Carro: {car.Modelo} Marca: {car.Marca} - Año: {car.Anio} - Color: {car.color} - Escala: {car.Escala} - Precio: {car.Precio}
                     </option>
                 ))}
             </select>
 
-            {/* Formulario para modificar el carro seleccionado */}
             {selectedCar && (
                 <form onSubmit={handleSubmit}>
-                    <label htmlFor="id_c_carro">ID Carro:</label>
+                    <label htmlFor="Modelo">Modelo:</label>
                     <input
                         type="text"
-                        id="id_c_carro"
-                        name="id_c_carro"
-                        value={formData.id_c_carro}
+                        id="Modelo"
+                        name="Modelo"
+                        value={formData.Modelo || ''}
                         onChange={handleChange}
                         required
                     /><br /><br />
 
-                    <label htmlFor="fecha_ingreso">Fecha de Ingreso:</label>
+                    <label htmlFor="Marca">Marca:</label>
                     <input
-                        type="date"
-                        id="fecha_ingreso"
-                        name="fecha_ingreso"
-                        value={formData.fecha_ingreso}
+                        type="text"
+                        id="Marca"
+                        name="Marca"
+                        value={formData.Marca || ''}
+                        onChange={handleChange}
+                        required
+                    /><br /><br />
+
+                    <label htmlFor="Anio">Año:</label>
+                    <input
+                        type="number"
+                        id="Anio"
+                        name="Anio"
+                        value={formData.Anio || ''}
+                        onChange={handleChange}
+                        required
+                    /><br /><br />
+
+                    <label htmlFor="color">Color:</label>
+                    <input
+                        type="text"
+                        id="color"
+                        name="color"
+                        value={formData.color || ''}
+                        onChange={handleChange}
+                        required
+                    /><br /><br />
+
+                    <label htmlFor="Escala">Escala:</label>
+                    <input
+                        type="text"
+                        id="Escala"
+                        name="Escala"
+                        value={formData.Escala || ''}
+                        onChange={handleChange}
+                        required
+                    /><br /><br />
+
+                    <label htmlFor="Precio">Precio:</label>
+                    <input
+                        type="number"
+                        id="Precio"
+                        name="Precio"
+                        value={formData.Precio || ''}
                         onChange={handleChange}
                         required
                     /><br /><br />

@@ -23,7 +23,6 @@ const RegistrarCliente = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Enviar los datos al servidor PHP
         try {
             const response = await fetch('http://localhost/registrar_cliente.php', {
                 method: 'POST',
@@ -34,7 +33,7 @@ const RegistrarCliente = () => {
             });
 
             const result = await response.json();
-            alert(result.message); // Mostrar el mensaje de éxito o error
+            alert(result.message);
         } catch (error) {
             console.error("Error en la solicitud:", error);
         }

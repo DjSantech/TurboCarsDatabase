@@ -1,6 +1,5 @@
-// src/components/MostrarInventario.js
 import React, { useState, useEffect } from 'react';
-import '../styles/MostrarInventario.css'; // Puedes crear estilos para este componente
+import '../styles/MostrarInventario.css'; 
 
 const MostrarInventario = () => {
     const [carros, setCarros] = useState([]);
@@ -8,10 +7,9 @@ const MostrarInventario = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        // Función para obtener los carros desde el servidor PHP
         const fetchCarros = async () => {
             try {
-                const response = await fetch('http://localhost/consultar_inventario.php');
+                const response = await fetch('http://localhost/consulta_inventario.php');
                 const data = await response.json();
                 if (Array.isArray(data)) {
                     setCarros(data);
@@ -56,13 +54,13 @@ const MostrarInventario = () => {
                     <tbody>
                         {carros.map((carro, index) => (
                             <tr key={index}>
-                                <td>{carro.id}</td>
-                                <td>{carro.modelo}</td>
-                                <td>{carro.marca}</td>
-                                <td>{carro.año}</td>
+                                <td>{carro.ID_carro}</td>
+                                <td>{carro.Modelo}</td>
+                                <td>{carro.Marca}</td>
+                                <td>{carro.Anio}</td>
                                 <td>{carro.color}</td>
-                                <td>{carro.escala}</td>
-                                <td>{carro.precio}</td>
+                                <td>{carro.Escala}</td>
+                                <td>{carro.Precio}</td>
                             </tr>
                         ))}
                     </tbody>

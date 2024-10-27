@@ -1,4 +1,3 @@
-// src/components/Login.js
 import React, { useState } from 'react';
 import {  useNavigate } from 'react-router-dom';
 import '../styles/LoginStyle.css'; 
@@ -10,9 +9,8 @@ const Login = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        // Aquí va tu lógica de autenticación
         if (usuario === 'admin' && contraseña === '1234') {
-            Navigate('/BaseDeDatos'); // Redirige al componente de base de datos
+            Navigate('/BaseDeDatos'); 
         } else {
             alert('Usuario o contraseña incorrectos');
         }
