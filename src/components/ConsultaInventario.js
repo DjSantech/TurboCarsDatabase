@@ -49,6 +49,7 @@ const MostrarInventario = () => {
                             <th>Color</th>
                             <th>Escala</th>
                             <th>Precio</th>
+                            <th>Estado</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -61,6 +62,7 @@ const MostrarInventario = () => {
                                 <td>{carro.color}</td>
                                 <td>{carro.Escala}</td>
                                 <td>{carro.Precio}</td>
+                                <td>{carro.Estado}</td>
                             </tr>
                         ))}
                     </tbody>
