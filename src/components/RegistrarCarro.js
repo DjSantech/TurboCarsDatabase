@@ -1,7 +1,6 @@
-// src/components/RegistrarCarro.js
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/RegistrarCarro.css'; 
+import '../styles/RegistrarCarro.css';
 
 const RegistrarCarro = () => {
     const [formData, setFormData] = useState({
@@ -9,8 +8,9 @@ const RegistrarCarro = () => {
         marca: '',
         año: '',
         color: '',
-        escala:'',
-        precio: ''
+        escala: '',
+        precio: '',
+        estado: 'disponible' 
     });
 
     const handleChange = (e) => {
@@ -23,7 +23,7 @@ const RegistrarCarro = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
+
         try {
             const response = await fetch('http://localhost/registrar_carro.php', {
                 method: 'POST',
@@ -32,9 +32,9 @@ const RegistrarCarro = () => {
                 },
                 body: new URLSearchParams(formData).toString()
             });
-    
-            const result = await response.json(); // Cambié esto a JSON
-            alert(result.message); // Mostrar el mensaje de éxito o error
+
+            const result = await response.json();
+            alert(result.message);
         } catch (error) {
             console.error("Error en la solicitud:", error);
         }
@@ -109,10 +109,10 @@ const RegistrarCarro = () => {
                     placeholder="Precio"
                     required
                 /><br /><br />
-                
+
                 <div className="botones-carros">
-                <Link to="/BaseDeDatos"><button>Volver al menu</button></Link>
-                <input type="submit" value="Registrar Carro" />
+                    <Link to="/BaseDeDatos"><button>Volver al menú</button></Link>
+                    <input type="submit" value="Registrar Carro" />
                 </div>
             </form>
         </div>

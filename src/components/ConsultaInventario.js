@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/MostrarInventario.css'; 
 
 const MostrarInventario = () => {
@@ -70,6 +71,9 @@ const MostrarInventario = () => {
             ) : (
                 <p>No hay carros registrados en el inventario</p>
             )}
+            <div className="volver-menu">
+                <Link to="/BaseDeDatos"><button>Volver al menú</button></Link>
+            </div>
         </div>
     );
 };

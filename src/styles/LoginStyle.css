@@ -34,8 +34,7 @@ body {
 
 .input-group {
     margin-bottom: 15px;
-    text-align: left; /* Alinea las etiquetas a la izquierda */
-}
+    text-align: left; }
 
 .login form {
     width: 90%;
@@ -59,25 +58,25 @@ body {
 }
 
 .login input[type="submit"] {
-    background-color: #007BFF; /* Color del botón */
+    background-color: #007BFF; 
     color: white;
     padding: 10px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    width: 100%; /* Hace que el botón ocupe todo el ancho */
+    width: 100%; 
 }
 
 .login button {
-    background-color: #007BFF; /* Color del botón */
+    background-color: #007BFF;
     color: white;
     padding: 10px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    width: 100%; /* Hace que el botón ocupe todo el ancho */
+    width: 100%; 
 }
 
 button:hover {
-    background-color: #0056b3; /* Color al pasar el ratón */
+    background-color: #0056b3; 
 }

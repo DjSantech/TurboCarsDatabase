@@ -10,6 +10,18 @@ const RegistrarVenta = () => {
     const [carros, setCarros] = useState([]);
     const [carrosSeleccionados, setCarrosSeleccionados] = useState([]);
 
+    const getTodayDate = () => {
+        const today = new Date();
+        return today.toISOString().split('T')[0];
+    };
+
+    const getMinDate = () => {
+        const today = new Date();
+        const pastDate = new Date(today.setDate(today.getDate() - 30));
+        return pastDate.toISOString().split('T')[0];
+    };
+
+
     useEffect(() => {
         fetch('http://localhost/obtener_clientes.php')
             .then(response => response.json())
@@ -20,6 +32,8 @@ const RegistrarVenta = () => {
             .then(response => response.json())
             .then(data => setCarros(data))
             .catch(error => console.error('Error al obtener la lista de carros:', error));
+
+        
     }, []);
 
     const handleCarroSeleccionado = (e) => {
@@ -40,6 +54,7 @@ const RegistrarVenta = () => {
             id_cliente: idCliente,
             fecha: fecha,
             total_venta: totalVenta,
+            carros: carrosSeleccionados,
         };
 
         fetch('http://localhost/registrar_venta.php', {
@@ -86,7 +101,8 @@ const RegistrarVenta = () => {
                 </div>
                 <div>
                     <label>Fecha:</label>
-                    <input type="date" value={fecha} onChange={(e) => setFecha(e.target.value)} required />
+                    <input type="date" value={fecha} onChange={(e) => setFecha(e.target.value)} min={getMinDate()} 
+                        max={getTodayDate()} required />
                 </div>
                 <div>
                     <label>Total Venta:</label>
